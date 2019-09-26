@@ -80,14 +80,20 @@ fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
         return hyper_reverse_proxy::call(PROXY_IP, "http://127.0.0.1:8000", req)
     } else {
         let root_dir = PathBuf::from(config.root_dir);
-        let a = serve_static(&req, &root_dir)
+        let res = serve_static(&req, &root_dir)
             .then(move |maybe_resp| {
                 // println!("make resp");
                 let re = match maybe_resp {
                     Ok(r) => r,
                     Err(_) => {
-                        Response::new(Body::empty())
+                        Response::builder()
+                            .status(StatusCode::OK)
+                            .header("cow", "0.0.1")
+                            .body(Body::from("not found"))
+                            .unwrap()
+                        // let mut response = Response::new(Body::empty());
                         // *response.status_mut() = StatusCode::NOT_FOUND;
+                        // response
                     }
                 };
 
@@ -95,7 +101,7 @@ fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
             });
             // .wait();
             // println!("{:#?}", a);
-            Box::new(a)
+            Box::new(res)
     }
 }
 
