@@ -1,3 +1,4 @@
+extern crate serde;
 #[macro_use]
 extern crate derive_more;
 #[macro_use]
@@ -6,11 +7,11 @@ extern crate serde_derive;
 extern crate hyper;
 extern crate futures;
 extern crate tokio_core;
+extern crate config;
 // #[macro_use]
 // extern crate lazy_static;
 
-use hyper::{Body, Request, Response, Server, Method, StatusCode, service::service_fn, header};
-// use hyper::rt::Future;
+use hyper::{Body, Request, Response, Server, StatusCode, service::service_fn, header};
 use regex::Regex;
 use futures::{future, future::Either, Future};
 use std::net::{IpAddr, Ipv4Addr};
@@ -23,7 +24,11 @@ use std::{
     path::{Path, PathBuf},
     error::Error as StdError,
     io,
+    net::SocketAddr,
 };
+
+mod conf;
+use conf::Cowconfig;
 
 // const PHRASE: &str = "Hello, World!";
 type BoxFut = Box<dyn Future<Item=Response<Body>, Error=hyper::Error> + Send>;
@@ -34,14 +39,22 @@ type BoxFut = Box<dyn Future<Item=Response<Body>, Error=hyper::Error> + Send>;
 
 static PROXY_IP: IpAddr = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1));
 
-
+// main function
+// init config
+// bind addr and listen port
 fn main() {
-    let addr = ([0, 0, 0, 0], 3000).into();
+    // init config
+    let config = Cowconfig::new().unwrap();
+    let address_string = format!("{}:{}", config.address, config.port);
+    let addr: SocketAddr = address_string.parse().unwrap();
 
+    // let addr = ([0, 0, 0, 0], 3000).into();
+    // println!("{:#?}", addr);
     let server = Server::bind(&addr)
         .serve(move || {
+            let config = config.clone();
             service_fn(move |req| {
-                parser_request(req).map_err(|e| {
+                parser_request(req, &config).map_err(|e| {
                     eprintln!("server error: {}", e);
                     e
                 })
@@ -56,21 +69,23 @@ fn main() {
 }
 
 
-fn parser_request(req: Request<Body>) -> BoxFut {
-
+fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
+    // get config
+    let config = config.clone();
+    // get uri path for location
     let uri_path = req.uri().path();
 
     let pattern = Regex::new(r"^/api").unwrap();
     if pattern.is_match(uri_path) {
         return hyper_reverse_proxy::call(PROXY_IP, "http://127.0.0.1:8000", req)
     } else {
-        let root_dir = PathBuf::from(r"/home/betta/cow");
+        let root_dir = PathBuf::from(config.root_dir);
         let a = serve_static(&req, &root_dir)
             .then(move |maybe_resp| {
                 // println!("make resp");
                 let re = match maybe_resp {
                     Ok(r) => r,
-                    Err(e) => {
+                    Err(_) => {
                         Response::new(Body::empty())
                         // *response.status_mut() = StatusCode::NOT_FOUND;
                     }
@@ -84,19 +99,21 @@ fn parser_request(req: Request<Body>) -> BoxFut {
     }
 }
 
+// serve static file
+// try to get dir redirect in progress
+// check if redir or path or not found
 fn serve_static(req: &Request<Body>, root_dir: &PathBuf) -> impl Future<Item=Response<Body>, Error=Error> {
     let uri = req.uri().clone();
     let root_dir = root_dir.clone();
 
     try_dir_redirect(req, &root_dir).and_then(move |maybe_redir_resp| {
-        // println!("111");
         if let Some(redir_resp) = maybe_redir_resp {
             return Either::A(future::ok(redir_resp));
         }
 
         if let Some(path) = local_path_with_maybe_index(&uri, &root_dir) {
-            // println!("maybe index");
             return Either::B(
+                // open file and make response with file
                 File::open(path.clone())
                     .map_err(Error::from)
                     .and_then(move |file| respond_with_file(file, path)),
@@ -109,13 +126,13 @@ fn serve_static(req: &Request<Body>, root_dir: &PathBuf) -> impl Future<Item=Res
 
 
 
-
+// try to get the path index file
 fn local_path_with_maybe_index(uri: &Uri, root_dir: &Path) -> Option<PathBuf> {
     local_path_for_request(uri, root_dir).map(|mut p: PathBuf| {
         if p.is_dir() {
             p.push("index.html");
         } else {
-            println!("{}", "error");
+            // println!("trying path as from URL");
         }
         p
     })
@@ -124,7 +141,9 @@ fn local_path_with_maybe_index(uri: &Uri, root_dir: &Path) -> Option<PathBuf> {
 
 fn try_dir_redirect(req: &Request<Body>, root_dir: &PathBuf) -> impl Future<Item=Option<Response<Body>>, Error=Error> {
     if !req.uri().path().ends_with("/") {
-        println!("path does not end with /");
+        // println!("path does not end with /");
+        // if path does not end of "/", it means does not a path
+        // if might be a file
         if let Some(path) = local_path_for_request(req.uri(), root_dir) {
             // println!("{:#?}", path.is_dir());
             if path.is_dir() {
@@ -159,10 +178,12 @@ fn try_dir_redirect(req: &Request<Body>, root_dir: &PathBuf) -> impl Future<Item
 fn local_path_for_request(uri: &Uri, root_dir: &Path) -> Option<PathBuf> {
     let request_path = uri.path();
 
+    // check uri start with /
     if !request_path.starts_with("/") {
         return None;
     }
 
+    // split when find ? in uri
     let end = request_path.find('?').unwrap_or(request_path.len());
     let request_path = &request_path[0..end];
 
@@ -181,53 +202,48 @@ fn local_path_for_request(uri: &Uri, root_dir: &Path) -> Option<PathBuf> {
     } else {
         return None;
     }
-    // println!("{:#?}", path);
     Some(path)
 }
 
 
 fn read_file(file: tokio::fs::File) -> impl Future<Item = Vec<u8>, Error = Error> {
     let buf: Vec<u8> = Vec::new();
+    // use tokio io to read the file
     tokio::io::read_to_end(file, buf)
         .map_err(Error::Io)
         .and_then(|(_read_handle, buf)| future::ok(buf))
 }
 
 
-// fn file_path_mime(file_path: &Path) -> mime::Mime {
-    // let mime_type = match file_path.extension().and_then(std::ffi::OsStr::to_str) {
-        // Some("html") => mime::TEXT_HTML,
-        // Some("css") => mime::TEXT_CSS,
-        // Some("js") => mime::TEXT_JAVASCRIPT,
-        // Some("jpg") => mime::IMAGE_JPEG,
-        // Some("md") => "text/markdown; charset=UTF-8"
-            // .parse::<mime::Mime>()
-            // .unwrap(),
-        // Some("png") => mime::IMAGE_PNG,
-        // Some("svg") => mime::IMAGE_SVG,
-        // Some("wasm") => "application/wasm".parse::<mime::Mime>().unwrap(),
-        // _ => mime::TEXT_PLAIN,
-    // };
-    // mime_type
-// }
+// get the file ext mime type
+fn file_path_mime(file_path: &Path) -> mime::Mime {
+    let mime_type = match file_path.extension().and_then(std::ffi::OsStr::to_str) {
+        Some("html") => mime::TEXT_HTML,
+        Some("css") => mime::TEXT_CSS,
+        Some("js") => mime::TEXT_JAVASCRIPT,
+        Some("jpg") => mime::IMAGE_JPEG,
+        Some("md") => "text/markdown; charset=UTF-8".parse::<mime::Mime>().unwrap(),
+        Some("png") => mime::IMAGE_PNG,
+        Some("svg") => mime::IMAGE_SVG,
+        Some("wasm") => "application/wasm".parse::<mime::Mime>().unwrap(),
+        _ => mime::TEXT_PLAIN,
+    };
+    mime_type
+}
 
-
-fn respond_with_file(file: tokio::fs::File, _path: PathBuf) -> impl Future<Item=Response<Body>, Error=Error> {
+// build response
+fn respond_with_file(file: tokio::fs::File, path: PathBuf) -> impl Future<Item=Response<Body>, Error=Error> {
     read_file(file).and_then(move |buf| {
-        // println!("{:#?}", buf);
-        // let mime_type = file_path_mime(&path);
-        let mime_type = "html";
+        let mime_type = file_path_mime(&path);
         Response::builder()
             .status(StatusCode::OK)
             .header(header::CONTENT_LENGTH, buf.len() as u64)
-            // .header(header::CONTENT_TYPE, mime_type.as_ref())
+            .header(header::CONTENT_TYPE, mime_type.as_ref())
+            .header("cow", "0.0.1")
             .body(Body::from(buf))
             .map_err(Error::from)
     })
 }
-
-
-
 
 
 #[derive(Debug, Display)]
