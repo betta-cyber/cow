@@ -23,17 +23,7 @@ source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
 name = "bitflags"
-version = "0.9.1"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "bitflags"
 version = "1.1.0"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "build_const"
-version = "0.2.1"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
@@ -50,11 +40,6 @@ dependencies = [
  "either 1.5.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "iovec 0.1.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
 ]
-
-[[package]]
-name = "cc"
-version = "1.0.45"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
 name = "cfg-if"
@@ -85,63 +70,23 @@ dependencies = [
 ]
 
 [[package]]
-name = "cookie"
-version = "0.2.5"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "time 0.1.42 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "url 1.7.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "core-foundation"
-version = "0.2.3"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "core-foundation-sys 0.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "core-foundation-sys"
-version = "0.2.3"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
 name = "cow"
 version = "0.1.0"
 dependencies = [
  "config 0.9.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "crc 1.8.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "derive_more 0.15.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "futures 0.1.29 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "http 0.1.18 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "hyper 0.12.35 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "hyper-reverse-proxy 0.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "lazy_static 1.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "mime 0.3.14 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "net2 0.2.33 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "num_cpus 1.10.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "percent-encoding 2.1.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "regex 1.3.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "reqwest 0.2.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "serde 1.0.101 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "serde_derive 1.0.101 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "tempdir 0.3.7 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "tokio 0.1.22 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "tokio-core 0.1.17 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "crc"
-version = "1.8.1"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "build_const 0.2.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
+ "unicase 2.5.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
 ]
 
 [[package]]
@@ -197,11 +142,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "dtoa"
-version = "0.2.2"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
 name = "either"
 version = "1.5.3"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
@@ -209,19 +149,6 @@ source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 [[package]]
 name = "fnv"
 version = "1.0.6"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "foreign-types"
-version = "0.3.2"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "foreign-types-shared 0.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "foreign-types-shared"
-version = "0.1.1"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
@@ -275,14 +202,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "hpack"
-version = "0.2.0"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "log 0.3.9 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
 name = "http"
 version = "0.1.18"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
@@ -307,26 +226,6 @@ dependencies = [
 name = "httparse"
 version = "1.3.4"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "hyper"
-version = "0.9.18"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "cookie 0.2.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "httparse 1.3.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "language-tags 0.2.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "log 0.3.9 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "mime 0.2.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "num_cpus 1.10.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "rustc-serialize 0.3.24 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "solicit 0.4.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "time 0.1.42 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "traitobject 0.0.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "typeable 0.1.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "unicase 1.4.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "url 1.7.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
 
 [[package]]
 name = "hyper"
@@ -358,27 +257,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "hyper-reverse-proxy"
-version = "0.4.0"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "futures 0.1.29 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "hyper 0.12.35 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "lazy_static 1.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "unicase 2.5.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "idna"
-version = "0.1.5"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "matches 0.1.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "unicode-bidi 0.3.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "unicode-normalization 0.1.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
 name = "indexmap"
 version = "1.2.0"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
@@ -394,11 +272,6 @@ dependencies = [
 
 [[package]]
 name = "itoa"
-version = "0.1.1"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "itoa"
 version = "0.4.4"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
@@ -410,11 +283,6 @@ dependencies = [
  "winapi 0.2.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "winapi-build 0.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
 ]
-
-[[package]]
-name = "language-tags"
-version = "0.2.2"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
 name = "lazy_static"
@@ -456,24 +324,11 @@ dependencies = [
 
 [[package]]
 name = "log"
-version = "0.3.9"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "log 0.4.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "log"
 version = "0.4.8"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 dependencies = [
  "cfg-if 0.1.9 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
 ]
-
-[[package]]
-name = "matches"
-version = "0.1.8"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
 name = "memchr"
@@ -486,14 +341,6 @@ version = "0.5.1"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 dependencies = [
  "rustc_version 0.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "mime"
-version = "0.2.6"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "log 0.3.9 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
 ]
 
 [[package]]
@@ -537,20 +384,6 @@ dependencies = [
  "net2 0.2.33 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "winapi 0.2.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "ws2_32-sys 0.2.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "native-tls"
-version = "0.1.5"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "lazy_static 0.2.11 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "openssl 0.9.24 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "schannel 0.1.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "security-framework 0.1.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "security-framework-sys 0.1.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "tempdir 0.3.7 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
 ]
 
 [[package]]
@@ -602,30 +435,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "openssl"
-version = "0.9.24"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "bitflags 0.9.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "foreign-types 0.3.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "lazy_static 1.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "openssl-sys 0.9.49 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "openssl-sys"
-version = "0.9.49"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "autocfg 0.1.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "cc 1.0.45 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "pkg-config 0.3.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "vcpkg 0.2.7 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
 name = "owning_ref"
 version = "0.4.0"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
@@ -656,17 +465,7 @@ dependencies = [
 
 [[package]]
 name = "percent-encoding"
-version = "1.0.1"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "percent-encoding"
 version = "2.1.0"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "pkg-config"
-version = "0.3.16"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
@@ -699,18 +498,6 @@ version = "1.0.2"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 dependencies = [
  "proc-macro2 1.0.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "rand"
-version = "0.4.6"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "fuchsia-cprng 0.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "rand_core 0.3.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "rdrand 0.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "winapi 0.3.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
 ]
 
 [[package]]
@@ -839,35 +626,8 @@ version = "0.6.12"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
-name = "remove_dir_all"
-version = "0.5.2"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "winapi 0.3.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "reqwest"
-version = "0.2.0"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "hyper 0.9.18 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "log 0.3.9 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "native-tls 0.1.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "serde 0.8.23 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "serde_json 0.8.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "serde_urlencoded 0.3.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "url 1.7.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
 name = "rust-ini"
 version = "0.13.0"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "rustc-serialize"
-version = "0.3.24"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
@@ -884,15 +644,6 @@ version = "1.0.0"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
-name = "schannel"
-version = "0.1.16"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "lazy_static 1.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "winapi 0.3.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
 name = "scoped-tls"
 version = "0.1.2"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
@@ -906,26 +657,6 @@ source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 name = "scopeguard"
 version = "1.0.0"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "security-framework"
-version = "0.1.16"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "core-foundation 0.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "core-foundation-sys 0.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "security-framework-sys 0.1.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "security-framework-sys"
-version = "0.1.16"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "core-foundation-sys 0.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
 
 [[package]]
 name = "semver"
@@ -974,17 +705,6 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "0.8.6"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "dtoa 0.2.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "itoa 0.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "num-traits 0.1.43 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "serde 0.8.23 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "serde_json"
 version = "1.0.40"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 dependencies = [
@@ -1002,15 +722,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "serde_urlencoded"
-version = "0.3.0"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "serde 0.8.23 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "url 1.7.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
 name = "slab"
 version = "0.4.2"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
@@ -1019,15 +730,6 @@ source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 name = "smallvec"
 version = "0.6.10"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "solicit"
-version = "0.4.4"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "hpack 0.2.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "log 0.3.9 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
 
 [[package]]
 name = "stable_deref_trait"
@@ -1060,15 +762,6 @@ dependencies = [
  "proc-macro2 1.0.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "quote 1.0.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
  "unicode-xid 0.2.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "tempdir"
-version = "0.3.7"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "rand 0.4.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "remove_dir_all 0.5.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
 ]
 
 [[package]]
@@ -1295,27 +988,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "traitobject"
-version = "0.0.1"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
 name = "try-lock"
 version = "0.2.2"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "typeable"
-version = "0.1.2"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "unicase"
-version = "1.4.2"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "version_check 0.1.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
 
 [[package]]
 name = "unicase"
@@ -1326,22 +1001,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "unicode-bidi"
-version = "0.3.4"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "matches 0.1.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "unicode-normalization"
-version = "0.1.8"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "smallvec 0.6.10 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
 name = "unicode-xid"
 version = "0.1.0"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
@@ -1349,21 +1008,6 @@ source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 [[package]]
 name = "unicode-xid"
 version = "0.2.0"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-
-[[package]]
-name = "url"
-version = "1.7.2"
-source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
-dependencies = [
- "idna 0.1.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "matches 0.1.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
- "percent-encoding 1.0.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)",
-]
-
-[[package]]
-name = "vcpkg"
-version = "0.2.7"
 source = "registry+git://mirrors.ustc.edu.cn/crates.io-index"
 
 [[package]]
@@ -1431,85 +1075,60 @@ dependencies = [
 "checksum aho-corasick 0.7.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "58fb5e95d83b38284460a5fda7d6470aa0b8844d283a0b614b8535e880800d2d"
 "checksum arrayvec 0.4.11 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "b8d73f9beda665eaa98ab9e4f7442bd4e7de6652587de55b2525e52e29c1b0ba"
 "checksum autocfg 0.1.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "b671c8fb71b457dd4ae18c4ba1e59aa81793daacc361d82fcd410cef0d491875"
-"checksum bitflags 0.9.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "4efd02e230a02e18f92fc2735f44597385ed02ad8f831e7c1c1156ee5e1ab3a5"
 "checksum bitflags 1.1.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "3d155346769a6855b86399e9bc3814ab343cd3d62c7e985113d46a0ec3c281fd"
-"checksum build_const 0.2.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "39092a32794787acd8525ee150305ff051b0aa6cc2abaf193924f5ab05425f39"
 "checksum byteorder 1.3.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "a7c3dd8985a7111efc5c80b44e23ecdd8c007de8ade3b96595387e812b957cf5"
 "checksum bytes 0.4.12 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "206fdffcfa2df7cbe15601ef46c813fce0965eb3286db6b56c583b814b51c81c"
-"checksum cc 1.0.45 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "4fc9a35e1f4290eb9e5fc54ba6cf40671ed2a2514c3eeb2b2a908dda2ea5a1be"
 "checksum cfg-if 0.1.9 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "b486ce3ccf7ffd79fdeb678eac06a9e6c09fc88d33836340becb8fffe87c5e33"
 "checksum cloudabi 0.0.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "ddfc5b9aa5d4507acaf872de71051dfd0e309860e88966e1051e462a077aac4f"
 "checksum config 0.9.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "f9107d78ed62b3fa5a86e7d18e647abed48cfd8f8fab6c72f4cdb982d196f7e6"
-"checksum cookie 0.2.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "0e3d6405328b6edb412158b3b7710e2634e23f3614b9bb1c412df7952489a626"
-"checksum core-foundation 0.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "25bfd746d203017f7d5cbd31ee5d8e17f94b6521c7af77ece6c9e4b2d4b16c67"
-"checksum core-foundation-sys 0.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "065a5d7ffdcbc8fa145d6f0746f3555025b9097a9e9cda59f7467abae670c78d"
-"checksum crc 1.8.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "d663548de7f5cca343f1e0a48d14dcfb0e9eb4e079ec58883b7251539fa10aeb"
 "checksum crossbeam-deque 0.7.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "b18cd2e169ad86297e6bc0ad9aa679aee9daa4f19e8163860faf7c164e4f5a71"
 "checksum crossbeam-epoch 0.7.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "fedcd6772e37f3da2a9af9bf12ebe046c0dfe657992377b4df982a2b54cd37a9"
 "checksum crossbeam-queue 0.1.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "7c979cd6cfe72335896575c6b5688da489e420d36a27a0b9eb0c73db574b4a4b"
 "checksum crossbeam-utils 0.6.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "04973fa96e96579258a5091af6003abde64af786b860f18622b82e026cca60e6"
 "checksum derive_more 0.15.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "7a141330240c921ec6d074a3e188a7c7ef95668bb95e7d44fa0e5778ec2a7afe"
-"checksum dtoa 0.2.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "0dd841b58510c9618291ffa448da2e4e0f699d984d436122372f446dae62263d"
 "checksum either 1.5.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "bb1f6b1ce1c140482ea30ddd3335fc0024ac7ee112895426e0a629a6c20adfe3"
 "checksum fnv 1.0.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "2fad85553e09a6f881f739c29f0b00b0f01357c743266d478b68951ce23285f3"
-"checksum foreign-types 0.3.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "f6f339eb8adc052cd2ca78910fda869aefa38d22d5cb648e6485e4d3fc06f3b1"
-"checksum foreign-types-shared 0.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "00b0228411908ca8685dba7fc2cdd70ec9990a6e753e89b6ac91a84c40fbaf4b"
 "checksum fuchsia-cprng 0.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "a06f77d526c1a601b7c4cdd98f54b5eaabffc14d5f2f0296febdc7f357c6d3ba"
 "checksum fuchsia-zircon 0.3.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "2e9763c69ebaae630ba35f74888db465e49e259ba1bc0eda7d06f4a067615d82"
 "checksum fuchsia-zircon-sys 0.3.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "3dcaa9ae7725d12cdb85b3ad99a434db70b468c09ded17e012d86b5c1010f7a7"
 "checksum futures 0.1.29 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "1b980f2816d6ee8673b6517b52cb0e808a180efc92e5c19d02cdda79066703ef"
 "checksum futures-cpupool 0.1.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "ab90cde24b3319636588d0c35fe03b1333857621051837ed769faefb4c2162e4"
 "checksum h2 0.1.26 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "a5b34c246847f938a410a03c5458c7fee2274436675e76d8b903c08efc29c462"
-"checksum hpack 0.2.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "3d2da7d3a34cf6406d9d700111b8eafafe9a251de41ae71d8052748259343b58"
 "checksum http 0.1.18 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "372bcb56f939e449117fb0869c2e8fd8753a8223d92a172c6e808cf123a5b6e4"
 "checksum http-body 0.1.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "6741c859c1b2463a423a1dbce98d418e6c3c3fc720fb0d45528657320920292d"
 "checksum httparse 1.3.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "cd179ae861f0c2e53da70d892f5f3029f9594be0c41dc5269cd371691b1dc2f9"
 "checksum hyper 0.12.35 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "9dbe6ed1438e1f8ad955a4701e9a944938e9519f6888d12d8558b645e247d5f6"
-"checksum hyper 0.9.18 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "1b9bf64f730d6ee4b0528a5f0a316363da9d8104318731509d4ccc86248f82b3"
-"checksum hyper-reverse-proxy 0.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "474f19c624c13005d914fc4a73aa2a2921b0371f5f7b748146f5130685492ce8"
-"checksum idna 0.1.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "38f09e0f0b1fb55fdee1f17470ad800da77af5186a1a76c026b679358b7e844e"
 "checksum indexmap 1.2.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "a61202fbe46c4a951e9404a720a0180bcf3212c750d735cb5c4ba4dc551299f3"
 "checksum iovec 0.1.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "dbe6e417e7d0975db6512b90796e8ce223145ac4e33c377e4a42882a0e88bb08"
-"checksum itoa 0.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "ae3088ea4baeceb0284ee9eea42f591226e6beaecf65373e41b38d95a1b8e7a1"
 "checksum itoa 0.4.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "501266b7edd0174f8530248f87f99c88fbe60ca4ef3dd486835b8d8d53136f7f"
 "checksum kernel32-sys 0.2.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "7507624b29483431c0ba2d82aece8ca6cdba9382bff4ddd0f7490560c056098d"
-"checksum language-tags 0.2.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "a91d884b6667cd606bb5a69aa0c99ba811a115fc68915e7056ec08a46e93199a"
 "checksum lazy_static 0.2.11 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "76f033c7ad61445c5b347c7382dd1237847eb1bce590fe50365dcb33d546be73"
 "checksum lazy_static 1.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 "checksum libc 0.2.62 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "34fcd2c08d2f832f376f4173a231990fa5aef4e99fb569867318a227ef4c06ba"
 "checksum linked-hash-map 0.3.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "6d262045c5b87c0861b3f004610afd0e2c851e2908d08b6c870cbb9d5f494ecd"
 "checksum linked-hash-map 0.5.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "ae91b68aebc4ddb91978b11a1b02ddd8602a05ec19002801c5666000e05e0f83"
 "checksum lock_api 0.1.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "62ebf1391f6acad60e5c8b43706dde4582df75c06698ab44511d15016bc2442c"
-"checksum log 0.3.9 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "e19e8d5c34a3e0e2223db8e060f9e8264aeeb5c5fc64a4ee9965c062211c024b"
 "checksum log 0.4.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "14b6052be84e6b71ab17edffc2eeabf5c2c3ae1fdb464aae35ac50c67a44e1f7"
-"checksum matches 0.1.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "7ffc5c5338469d4d3ea17d269fa8ea3512ad247247c30bd2df69e68309ed0a08"
 "checksum memchr 2.2.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "88579771288728879b57485cc7d6b07d648c9f0141eb955f8ab7f9d45394468e"
 "checksum memoffset 0.5.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "ce6075db033bbbb7ee5a0bbd3a3186bbae616f57fb001c485c7ff77955f8177f"
-"checksum mime 0.2.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "ba626b8a6de5da682e1caa06bdb42a335aee5a84db8e5046a3e8ab17ba0a3ae0"
 "checksum mime 0.3.14 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "dd1d63acd1b78403cc0c325605908475dd9b9a3acbf65ed8bcab97e27014afcf"
 "checksum mio 0.6.19 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "83f51996a3ed004ef184e16818edc51fadffe8e7ca68be67f9dee67d84d0ff23"
 "checksum mio-uds 0.6.7 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "966257a94e196b11bb43aca423754d87429960a768de9414f3691d6957abf125"
 "checksum miow 0.2.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "8c1f2f3b1cf331de6896aabf6e9d55dca90356cc9960cca7eaaf408a355ae919"
-"checksum native-tls 0.1.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "f74dbadc8b43df7864539cedb7bc91345e532fdd913cfdc23ad94f4d2d40fbc0"
 "checksum net2 0.2.33 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "42550d9fb7b6684a6d404d9fa7250c2eb2646df731d1c06afc06dcee9e1bcf88"
 "checksum nodrop 0.1.13 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "2f9667ddcc6cc8a43afc9b7917599d7216aa09c463919ea32c59ed6cac8bc945"
 "checksum nom 4.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "2ad2a91a8e869eeb30b9cb3119ae87773a8f4ae617f41b1eb9c154b2905f7bd6"
 "checksum num-traits 0.1.43 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "92e5113e9fd4cc14ded8e499429f396a20f98c772a47cc8622a736e1ec843c31"
 "checksum num-traits 0.2.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "6ba9a427cfca2be13aa6f6403b0b7e7368fe982bfa16fccc450ce74c46cd9b32"
 "checksum num_cpus 1.10.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "bcef43580c035376c0705c42792c294b66974abbfd2789b511784023f71f3273"
-"checksum openssl 0.9.24 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "a3605c298474a3aa69de92d21139fb5e2a81688d308262359d85cdd0d12a7985"
-"checksum openssl-sys 0.9.49 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "f4fad9e54bd23bd4cbbe48fdc08a1b8091707ac869ef8508edea2fec77dcc884"
 "checksum owning_ref 0.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "49a4b8ea2179e6a2e27411d3bca09ca6dd630821cf6894c6c7c8467a8ee7ef13"
 "checksum parking_lot 0.7.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "ab41b4aed082705d1056416ae4468b6ea99d52599ecf3169b00088d43113e337"
 "checksum parking_lot_core 0.4.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "94c8c7923936b28d546dfd14d4472eaf34c99b14e1c973a32b3e6d4eb04298c9"
-"checksum percent-encoding 1.0.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "31010dd2e1ac33d5b46a5b413495239882813e0369f8ed8a5e266f173602f831"
 "checksum percent-encoding 2.1.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "d4fd5641d01c8f18a23da7b6fe29298ff4b55afcccdf78973b24cf3175fee32e"
-"checksum pkg-config 0.3.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "72d5370d90f49f70bd033c3d75e87fc529fbfff9d6f7cccef07d6170079d91ea"
 "checksum proc-macro2 0.4.30 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "cf3d2011ab5c909338f7887f4fc896d35932e29146c12c8d01da6b22a80ba759"
 "checksum proc-macro2 1.0.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "afdc77cc74ec70ed262262942ebb7dac3d479e9e5cfa2da1841c0806f6cdabcc"
 "checksum quote 0.6.13 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "6ce23b6b870e8f94f81fb0a363d65d86675884b34a09043c81e5562f11c1f8e1"
 "checksum quote 1.0.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "053a8c8bcc71fcce321828dc897a98ab9760bef03a4fc36693c231e5b3216cfe"
-"checksum rand 0.4.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "552840b97013b1a26992c11eac34bdd778e464601a4c2054b5f0bff7c6761293"
 "checksum rand 0.6.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "6d71dacdc3c88c1fde3885a3be3fbab9f35724e6ce99467f7d9c5026132184ca"
 "checksum rand_chacha 0.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "556d3a1ca6600bfcbab7c7c91ccb085ac7fbbcd70e008a98742e7847f4f7bcef"
 "checksum rand_core 0.3.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "7a6fdeb83b075e8266dcc8762c22776f6877a63111121f5f8c7411e5be7eed4b"
@@ -1524,36 +1143,26 @@ dependencies = [
 "checksum redox_syscall 0.1.56 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "2439c63f3f6139d1b57529d16bc3b8bb855230c8efcc5d3a896c8bea7c3b1e84"
 "checksum regex 1.3.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "dc220bd33bdce8f093101afe22a037b8eb0e5af33592e6a9caafff0d4cb81cbd"
 "checksum regex-syntax 0.6.12 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "11a7e20d1cce64ef2fed88b66d347f88bd9babb82845b2b858f3edbf59a4f716"
-"checksum remove_dir_all 0.5.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "4a83fa3702a688b9359eccba92d153ac33fd2e8462f9e0e3fdf155239ea7792e"
-"checksum reqwest 0.2.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "83186fee0d4dbeb95e610b77b05b05cf5b31703dd375222acb74c3dff4be957c"
 "checksum rust-ini 0.13.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "3e52c148ef37f8c375d49d5a73aa70713125b7f19095948a923f80afdeb22ec2"
-"checksum rustc-serialize 0.3.24 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "dcf128d1287d2ea9d80910b5f1120d0b8eede3fbf1abe91c40d39ea7d51e6fda"
 "checksum rustc_version 0.2.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "138e3e0acb6c9fb258b19b67cb8abd63c00679d2851805ea151465464fe9030a"
 "checksum ryu 1.0.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "c92464b447c0ee8c4fb3824ecc8383b81717b9f1e74ba2e72540aef7b9f82997"
-"checksum schannel 0.1.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "87f550b06b6cba9c8b8be3ee73f391990116bf527450d2556e9b9ce263b9a021"
 "checksum scoped-tls 0.1.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "332ffa32bf586782a3efaeb58f127980944bbc8c4d6913a86107ac2a5ab24b28"
 "checksum scopeguard 0.3.3 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "94258f53601af11e6a49f722422f6e3425c52b06245a5cf9bc09908b174f5e27"
 "checksum scopeguard 1.0.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "b42e15e59b18a828bbf5c58ea01debb36b9b096346de35d941dcb89009f24a0d"
-"checksum security-framework 0.1.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "dfa44ee9c54ce5eecc9de7d5acbad112ee58755239381f687e564004ba4a2332"
-"checksum security-framework-sys 0.1.16 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "5421621e836278a0b139268f36eee0dc7e389b784dc3f79d8f11aabadf41bead"
 "checksum semver 0.9.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "1d7eb9ef2c18661902cc47e535f9bc51b78acd254da71d375c2f6720d9a40403"
 "checksum semver-parser 0.7.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "388a1df253eca08550bef6c72392cfe7c30914bf41df5269b68cbd6ff8f570a3"
 "checksum serde 0.8.23 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "9dad3f759919b92c3068c696c15c3d17238234498bbdcc80f2c469606f948ac8"
 "checksum serde 1.0.101 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "9796c9b7ba2ffe7a9ce53c2287dfc48080f4b2b362fcc245a259b3a7201119dd"
 "checksum serde-hjson 0.8.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "0b833c5ad67d52ced5f5938b2980f32a9c1c5ef047f0b4fb3127e7a423c76153"
 "checksum serde_derive 1.0.101 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "4b133a43a1ecd55d4086bd5b4dc6c1751c68b1bfbeba7a5040442022c7e7c02e"
-"checksum serde_json 0.8.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "67f7d2e9edc3523a9c8ec8cd6ec481b3a27810aafee3e625d311febd3e656b4c"
 "checksum serde_json 1.0.40 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "051c49229f282f7c6f3813f8286cc1e3323e8051823fce42c7ea80fe13521704"
 "checksum serde_test 0.8.23 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "110b3dbdf8607ec493c22d5d947753282f3bae73c0f56d322af1e8c78e4c23d5"
-"checksum serde_urlencoded 0.3.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "53d4ebaa8d1d4f90d1b63dfca81ccd98ac20e1e479dbae393cbaf60f6fecd8d8"
 "checksum slab 0.4.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "c111b5bd5695e56cffe5129854aa230b39c93a305372fdbb2668ca2394eea9f8"
 "checksum smallvec 0.6.10 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "ab606a9c5e214920bb66c458cd7be8ef094f813f20fe77a54cc7dbfff220d4b7"
-"checksum solicit 0.4.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "172382bac9424588d7840732b250faeeef88942e37b6e35317dce98cafdd75b2"
 "checksum stable_deref_trait 1.1.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "dba1a27d3efae4351c8051072d619e3ade2820635c3958d826bfea39d59b54c8"
 "checksum string 0.2.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "d24114bfcceb867ca7f71a0d3fe45d45619ec47a6fbfa98cb14e14250bfa5d6d"
 "checksum syn 0.15.44 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "9ca4b3b69a77cbe1ffc9e198781b7acb0c7365a883670e8f1c1bc66fba79a5c5"
 "checksum syn 1.0.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "66850e97125af79138385e9b88339cbcd037e3f28ceab8c5ad98e64f0f1f80bf"
-"checksum tempdir 0.3.7 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "15f2b5fb00ccdf689e0149d1b1b3c03fead81c2b37735d812fa8bddbbf41b6d8"
 "checksum thread_local 0.3.6 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "c6b53e329000edc2b34dbe8545fd20e55a333362d0a321909685a19bd28c3f1b"
 "checksum time 0.1.42 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "db8dcfca086c1143c9270ac42a2bbd8a7ee477b78ac8e45b19abfb0cbede4b6f"
 "checksum tokio 0.1.22 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "5a09c0b5bb588872ab2f09afa13ee6e9dac11e10a0ec9e8e3ba39a5a5d530af6"
@@ -1572,17 +1181,10 @@ dependencies = [
 "checksum tokio-udp 0.1.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "f02298505547f73e60f568359ef0d016d5acd6e830ab9bc7c4a5b3403440121b"
 "checksum tokio-uds 0.2.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "037ffc3ba0e12a0ab4aca92e5234e0dedeb48fddf6ccd260f1f150a36a9f2445"
 "checksum toml 0.4.10 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "758664fc71a3a69038656bee8b6be6477d2a6c315a6b81f7081f591bffa4111f"
-"checksum traitobject 0.0.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "07eaeb7689bb7fca7ce15628319635758eda769fed481ecfe6686ddef2600616"
 "checksum try-lock 0.2.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "e604eb7b43c06650e854be16a2a03155743d3752dd1c943f6829e26b7a36e382"
-"checksum typeable 0.1.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "1410f6f91f21d1612654e7cc69193b0334f909dcf2c790c4826254fbb86f8887"
-"checksum unicase 1.4.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "7f4765f83163b74f957c797ad9253caf97f103fb064d3999aea9568d09fc8a33"
 "checksum unicase 2.5.1 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "2e2e6bd1e59e56598518beb94fd6db628ded570326f0a98c679a304bd9f00150"
-"checksum unicode-bidi 0.3.4 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "49f2bd0c6468a8230e1db229cff8029217cf623c767ea5d60bfbd42729ea54d5"
-"checksum unicode-normalization 0.1.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "141339a08b982d942be2ca06ff8b076563cbe223d1befd5450716790d44e2426"
 "checksum unicode-xid 0.1.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "fc72304796d0818e357ead4e000d19c9c174ab23dc11093ac919054d20a6a7fc"
 "checksum unicode-xid 0.2.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "826e7639553986605ec5979c7dd957c7895e93eabed50ab2ffa7f6128a75097c"
-"checksum url 1.7.2 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "dd4e7c0d531266369519a4aa4f399d748bd37043b00bde1e4ff1f60a120b355a"
-"checksum vcpkg 0.2.7 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "33dd455d0f96e90a75803cfeb7f948768c08d70a6de9a8d2362461935698bf95"
 "checksum version_check 0.1.5 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "914b1a6776c4c929a602fafd8bc742e06365d4bcbe48c30f9cca5824f70dc9dd"
 "checksum want 0.2.0 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "b6395efa4784b027708f7451087e647ec73cc74f5d9bc2e418404248d679a230"
 "checksum winapi 0.2.8 (registry+git://mirrors.ustc.edu.cn/crates.io-index)" = "167dc9d6949a9b857f3451275e911c3f44255842c1f7a76f33c55103a909087a"

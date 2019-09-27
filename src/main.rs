@@ -11,7 +11,8 @@ extern crate config;
 // #[macro_use]
 // extern crate lazy_static;
 
-use hyper::{Body, Request, Response, Server, StatusCode, service::service_fn, header};
+use hyper::{Body, Request, Response, Server, StatusCode, service::{make_service_fn, service_fn}, header};
+use hyper::server::conn::AddrStream;
 use regex::Regex;
 use futures::{future, future::Either, Future};
 use std::net::{IpAddr, Ipv4Addr};
@@ -24,14 +25,15 @@ use std::{
     path::{Path, PathBuf},
     error::Error as StdError,
     io,
-    net::SocketAddr,
+    net::{SocketAddr, TcpStream},
 };
 
 mod conf;
+mod proxy;
 use conf::Cowconfig;
 
 // const PHRASE: &str = "Hello, World!";
-type BoxFut = Box<dyn Future<Item=Response<Body>, Error=hyper::Error> + Send>;
+type BoxFut = Box<dyn Future<Item=Response<Body>, Error=Error> + Send>;
 
 // lazy_static! {
     // static ref PROXY_IP: IpAddr = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1));
@@ -50,16 +52,20 @@ fn main() {
 
     // let addr = ([0, 0, 0, 0], 3000).into();
     // println!("{:#?}", addr);
-    let server = Server::bind(&addr)
-        .serve(move || {
-            let config = config.clone();
-            service_fn(move |req| {
-                parser_request(req, &config).map_err(|e| {
-                    eprintln!("server error: {}", e);
-                    e
-                })
+    let make_svc = make_service_fn(|socket: &AddrStream| {
+        let remote_addr = socket.remote_addr();
+        println!("{:#?}", remote_addr);
+        service_fn(move |req| {
+            let config = Cowconfig::new().unwrap();
+            parser_request(req, &config).map_err(|e| {
+                eprintln!("server error: {}", e);
+                e
             })
         })
+    });
+
+    let server = Server::bind(&addr)
+        .serve(make_svc)
         .map_err(|e| {
             eprintln!("server error: {}", e);
             ()
@@ -77,7 +83,8 @@ fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
 
     let pattern = Regex::new(r"^/api").unwrap();
     if pattern.is_match(uri_path) {
-        return hyper_reverse_proxy::call(PROXY_IP, "http://127.0.0.1:8000", req)
+        // return hyper_reverse_proxy::call(PROXY_IP, "http://127.0.0.1:8000", req)
+        return proxy::proxy(PROXY_IP, "http://127.0.0.1:8000", req)
     } else {
         let root_dir = PathBuf::from(config.root_dir);
         let res = serve_static(&req, &root_dir)
