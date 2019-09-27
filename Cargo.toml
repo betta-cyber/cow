@@ -21,6 +21,7 @@ http = "0.1.17"
 percent-encoding = "2.0.0"
 config = "0.9"
 unicase = "2.3"
+log4rs = "0.8.3"
 
 [[bin]]
 name = "cow"

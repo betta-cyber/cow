@@ -25,7 +25,7 @@ use std::{
     path::{Path, PathBuf},
     error::Error as StdError,
     io,
-    net::{SocketAddr, TcpStream},
+    net::SocketAddr,
 };
 
 mod conf;
@@ -54,7 +54,7 @@ fn main() {
     // println!("{:#?}", addr);
     let make_svc = make_service_fn(|socket: &AddrStream| {
         let remote_addr = socket.remote_addr();
-        println!("{:#?}", remote_addr);
+        // println!("{:#?}", remote_addr);
         service_fn(move |req| {
             let config = Cowconfig::new().unwrap();
             parser_request(req, &config).map_err(|e| {
