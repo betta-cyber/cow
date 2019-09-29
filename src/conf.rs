@@ -7,7 +7,7 @@ pub struct Cowconfig {
     pub port: String,
     pub address: String,
     pub root_dir: String,
-    pub server: Vec<HashMap<String, String>>,
+    pub server: Vec<HashMap<String, HashMap<String, String>>>,
 }
 
 impl Cowconfig {
