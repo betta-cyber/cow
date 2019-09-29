@@ -8,6 +8,9 @@ extern crate hyper;
 extern crate futures;
 extern crate tokio_core;
 extern crate config;
+extern crate pretty_env_logger;
+#[macro_use] extern crate log;
+
 // #[macro_use]
 // extern crate lazy_static;
 
@@ -47,16 +50,25 @@ static PROXY_IP: IpAddr = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1));
 fn main() {
     // init config
     let config = Cowconfig::new().unwrap();
+    if config.debug {
+        std::env::set_var("RUST_LOG", "debug");
+    }
+    pretty_env_logger::init();
+
     let address_string = format!("{}:{}", config.address, config.port);
     let addr: SocketAddr = address_string.parse().unwrap();
 
+    info!("init config");
+    debug!("{:#?}", config.server);
+
     // let addr = ([0, 0, 0, 0], 3000).into();
     // println!("{:#?}", addr);
-    let make_svc = make_service_fn(|socket: &AddrStream| {
+    let make_svc = make_service_fn(move |socket: &AddrStream| {
         let remote_addr = socket.remote_addr();
         // println!("{:#?}", remote_addr);
+        let config = config.clone();
         service_fn(move |req| {
-            let config = Cowconfig::new().unwrap();
+            info!("{:#?}", req);
             parser_request(req, &config).map_err(|e| {
                 eprintln!("server error: {}", e);
                 e
@@ -80,6 +92,13 @@ fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
     let config = config.clone();
     // get uri path for location
     let uri_path = req.uri().path();
+
+    for c in config.server.iter() {
+        debug!("{:#?}", c);
+        // let pattern = Regex::new(r"^/api").unwrap();
+        // let s = c.get("location").unwrap().clone();
+        // let pattern = Regex::new(&s[..]).unwrap();
+    }
 
     let pattern = Regex::new(r"^/api").unwrap();
     if pattern.is_match(uri_path) {

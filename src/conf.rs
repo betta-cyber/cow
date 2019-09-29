@@ -1,9 +1,5 @@
 use config::{ConfigError, Config, File};
-
-// #[derive(Debug, Deserialize)]
-// struct Location {
-    // url: String,
-// }
+use std::collections::HashMap;
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Cowconfig {
@@ -11,7 +7,7 @@ pub struct Cowconfig {
     pub port: String,
     pub address: String,
     pub root_dir: String,
-    // pub location: [Location],
+    pub server: Vec<HashMap<String, String>>,
 }
 
 impl Cowconfig {

@@ -1,4 +1,12 @@
-debug = false
+debug = true
 port = "3000"
 address = "0.0.0.0"
 root_dir = "/home/betta/license_generator/templates"
+
+[[server]]
+  location = "/api/v1"
+  proxy_pass = "127.0.0.1:8000"
+
+[[server]]
+  location = "/api/v1"
+  static_path = "/"
