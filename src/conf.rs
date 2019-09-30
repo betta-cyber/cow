@@ -16,9 +16,9 @@ pub struct Cowconfig {
 }
 
 impl Cowconfig {
-    pub fn new() -> Result<Self, ConfigError> {
+    pub fn new(path: &str) -> Result<Self, ConfigError> {
         let mut s = Config::new();
-        s.merge(File::with_name("cow.toml"))?;
+        s.merge(File::with_name(path))?;
 
         s.try_into()
     }
