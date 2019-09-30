@@ -5,10 +5,10 @@ root_dir = "/home/betta/license_generator/templates"
 
 [[server]]
   [server.location]
-    path = "/api/v1"
+    pattern = "/api/v1"
     proxy_pass = "127.0.0.1:8000"
 
 [[server]]
   [server.location]
-    path = "/"
+    pattern = "/"
     static_path = "/"

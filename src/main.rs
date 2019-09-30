@@ -29,6 +29,7 @@ use std::{
     error::Error as StdError,
     io,
     net::SocketAddr,
+    collections::HashMap,
 };
 
 mod conf;
@@ -92,23 +93,12 @@ fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
     let config = config.clone();
     // get uri path for location
     let uri_path = req.uri().path();
-
-    for c in config.server.iter() {
-        debug!("{:#?}", c);
-        // let pattern = Regex::new(r"^/api").unwrap();
-        // let s = c.get("location").unwrap().clone();
-        // let pattern = Regex::new(&s[..]).unwrap();
-    }
-
-    let pattern = Regex::new(r"^/api").unwrap();
-    if pattern.is_match(uri_path) {
-        // return hyper_reverse_proxy::call(PROXY_IP, "http://127.0.0.1:8000", req)
-        return proxy::proxy(PROXY_IP, "http://127.0.0.1:8000", req)
-    } else {
+    let location: HashMap<String, String> = find_locatiton(config.server, uri_path);
+    println!("{:#?}", location);
+    if location.contains_key("static_path") {
         let root_dir = PathBuf::from(config.root_dir);
         let res = serve_static(&req, &root_dir)
             .then(move |maybe_resp| {
-                // println!("make resp");
                 let re = match maybe_resp {
                     Ok(r) => r,
                     Err(_) => {
@@ -128,7 +118,31 @@ fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
             // .wait();
             // println!("{:#?}", a);
             Box::new(res)
+    } else if location.contains_key("proxy_pass") {
+        return proxy::proxy(PROXY_IP, "http://127.0.0.1:8000", req)
+    } else {
+        // bad error
+        let re = Response::builder()
+            .status(StatusCode::OK)
+            .header("cow", "0.0.1")
+            .body(Body::from("not found"))
+            .unwrap();
+        let res = future::ok(re);
+        Box::new(res)
     }
+}
+
+// find uri location and return location config
+fn find_locatiton(config: Vec<conf::Server>, uri: &str) -> HashMap<String, String>{
+    for c in config.iter() {
+        let location = c.location.clone();
+        let s = location.get("pattern").unwrap().clone();
+        let pattern = Regex::new(&s[..]).unwrap();
+        if pattern.is_match(uri) {
+            return location;
+        }
+    }
+    HashMap::new()
 }
 
 // serve static file
