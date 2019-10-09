@@ -98,6 +98,20 @@ fn main() {
             ()
         });
 
+    // let tls_cfg = {
+        // // Load public certificate.
+        // let certs = load_certs("examples/sample.pem")?;
+        // // Load private key.
+        // let key = load_private_key("examples/sample.rsa")?;
+        // // Do not use client certificate authentication.
+        // let mut cfg = rustls::ServerConfig::new(rustls::NoClientAuth::new());
+        // // Select a certificate to use.
+        // cfg.set_single_cert(certs, key)
+            // .map_err(|e| error(format!("{}", e)))?;
+        // sync::Arc::new(cfg)
+    // };
+    // let tls_acceptor = TlsAcceptor::from(tls_cfg);
+
     hyper::rt::run(server);
 }
 
