@@ -319,6 +319,47 @@ fn respond_with_file(file: tokio::fs::File, path: PathBuf) -> impl Future<Item=R
     })
 }
 
+fn make_error_response(e: Error) -> impl Future<Item = Response<Body>, Error = Error> {
+    match e {
+        Error::Io(e) => Either::A(make_io_error_response(e)),
+        e => Either::B(make_internal_server_error_response(e)),
+    }
+}
+
+// return 500
+fn make_io_error_response(error: io::Error) -> impl Future<Item = Response<Body>, Error = Error> {
+    match error.kind() {
+        io::ErrorKind::NotFound => {
+            debug!("{}", error);
+            Either::A(make_error_response_from_code(StatusCode::NOT_FOUND))
+        }
+        _ => Either::B(make_internal_server_error_response(Error::Io(error))),
+    }
+}
+
+// convert an error into a 500 internal server error, and log it.
+fn make_internal_server_error_response(err: Error) -> impl Future<Item = Response<Body>, Error = Error> {
+    make_error_response_from_code(StatusCode::INTERNAL_SERVER_ERROR)
+}
+
+
+/// Make an error response given an HTTP status code.
+fn make_error_response_from_code(status: StatusCode) -> impl Future<Item = Response<Body>, Error = Error> {
+    future::result({ render_error_html(status) })
+        .and_then(move |body| html_str_to_response(body, status))
+}
+
+
+/// Make an HTTP response from a HTML string.
+fn html_str_to_response(body: String, status: StatusCode) -> Result<Response<Body>> {
+    Response::builder()
+        .status(status)
+        .header(header::CONTENT_LENGTH, body.len())
+        .header(header::CONTENT_TYPE, mime::TEXT_HTML.as_ref())
+        .body(Body::from(body))
+        .map_err(Error::from)
+}
+
 
 #[derive(Debug, Display)]
 pub enum Error {
