@@ -23,6 +23,8 @@ unicase = "2.3"
 log = "0.4"
 pretty_env_logger = "0.3"
 clap = "2.33.0"
+handlebars = "2.0.2"
+num_cpus = "1.10.1"
 
 [[bin]]
 name = "cow"

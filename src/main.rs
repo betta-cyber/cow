@@ -10,6 +10,8 @@ extern crate config;
 extern crate pretty_env_logger;
 #[macro_use] extern crate log;
 extern crate clap;
+extern crate handlebars;
+extern crate num_cpus;
 
 // #[macro_use]
 // extern crate lazy_static;
@@ -20,6 +22,7 @@ use regex::Regex;
 use futures::{future, future::Either, Future};
 use std::net::{IpAddr, Ipv4Addr};
 use http::Uri;
+use handlebars::Handlebars;
 use percent_encoding::percent_decode_str;
 use tokio::fs::File;
 use clap::App;
@@ -129,18 +132,19 @@ fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
             .then(move |maybe_resp| {
                 let re = match maybe_resp {
                     Ok(r) => r,
-                    Err(_) => {
-                        Response::builder()
-                            .status(StatusCode::OK)
-                            .header("cow", "0.0.1")
-                            .body(Body::from("not found"))
-                            .unwrap()
-                        // let mut response = Response::new(Body::empty());
-                        // *response.status_mut() = StatusCode::NOT_FOUND;
-                        // response
+                    Err(e) => {
+                        // Response::builder()
+                            // .status(StatusCode::OK)
+                            // .header("cow", "0.0.1")
+                            // .body(Body::from("not found"))
+                            // .unwrap()
+                        let a = make_error_response(e).wait();
+                        match a {
+                            Ok(k) => k,
+                            Err(_) => panic!("error")
+                        }
                     }
                 };
-
                 future::ok(re)
             });
             // .wait();
@@ -319,15 +323,15 @@ fn respond_with_file(file: tokio::fs::File, path: PathBuf) -> impl Future<Item=R
     })
 }
 
-fn make_error_response(e: Error) -> impl Future<Item = Response<Body>, Error = Error> {
+fn make_error_response(e: Error) -> impl Future<Item=Response<Body>, Error = Error> {
     match e {
         Error::Io(e) => Either::A(make_io_error_response(e)),
         e => Either::B(make_internal_server_error_response(e)),
     }
 }
 
-// return 500
-fn make_io_error_response(error: io::Error) -> impl Future<Item = Response<Body>, Error = Error> {
+// return io 500
+fn make_io_error_response(error: io::Error) -> impl Future<Item=Response<Body>, Error = Error> {
     match error.kind() {
         io::ErrorKind::NotFound => {
             debug!("{}", error);
@@ -343,15 +347,40 @@ fn make_internal_server_error_response(err: Error) -> impl Future<Item = Respons
 }
 
 
-/// Make an error response given an HTTP status code.
+// Make an error response given an HTTP status code.
 fn make_error_response_from_code(status: StatusCode) -> impl Future<Item = Response<Body>, Error = Error> {
     future::result({ render_error_html(status) })
         .and_then(move |body| html_str_to_response(body, status))
 }
 
+static HTML_TEMPLATE: &str = include_str!("template.html");
 
-/// Make an HTTP response from a HTML string.
-fn html_str_to_response(body: String, status: StatusCode) -> Result<Response<Body>> {
+/// The data for the handlebars HTML template. Handlebars will use serde to get
+/// the data out of the struct and mapped onto the template.
+#[derive(Serialize)]
+struct HtmlCfg {
+    title: String,
+    body: String,
+}
+
+/// Render an HTML page with handlebars, the template and the configuration data.
+fn render_html(cfg: HtmlCfg) -> Result<String, Error> {
+    let reg = Handlebars::new();
+    let rendered = reg
+        .render_template(HTML_TEMPLATE, &cfg)
+        .map_err(Error::TemplateRender)?;
+    Ok(rendered)
+}
+
+fn render_error_html(status: StatusCode) -> Result<String, Error> {
+    render_html(HtmlCfg {
+        title: format!("{}", status),
+        body: String::new(),
+    })
+}
+
+// Make an HTTP response from a HTML string.
+fn html_str_to_response(body: String, status: StatusCode) -> Result<Response<Body>, Error> {
     Response::builder()
         .status(status)
         .header(header::CONTENT_LENGTH, body.len())
@@ -380,8 +409,8 @@ pub enum Error {
     #[display(fmt = "failed to strip prefix in directory listing")]
     StripPrefixInDirList(std::path::StripPrefixError),
 
-    // #[display(fmt = "failed to render template")]
-    // TemplateRender(handlebars::TemplateRenderError),
+    #[display(fmt = "failed to render template")]
+    TemplateRender(handlebars::TemplateRenderError),
 
     #[display(fmt = "failed to convert URL to local file path")]
     UrlToPath,
@@ -400,7 +429,7 @@ impl StdError for Error {
             AddrParse(e) => Some(e),
             MarkdownUtf8 => None,
             StripPrefixInDirList(e) => Some(e),
-            // TemplateRender(e) => Some(e),
+            TemplateRender(e) => Some(e),
             UrlToPath => None,
             WriteInDirList(e) => Some(e),
         }
