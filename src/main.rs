@@ -30,6 +30,7 @@ use std::{
     path::{Path, PathBuf},
     error::Error as StdError,
     io,
+    fs,
     net::SocketAddr,
     collections::HashMap,
 };
@@ -125,7 +126,6 @@ fn parser_request(req: Request<Body>, config: &Cowconfig) -> BoxFut {
     // get uri path for location
     let uri_path = req.uri().path();
     let location: HashMap<String, String> = find_locatiton(config.server, uri_path);
-    debug!("{:#?}", location);
     if location.contains_key("static_path") {
         let root_dir = PathBuf::from(config.root_dir);
         let res = serve_static(&req, &root_dir)
@@ -190,12 +190,24 @@ fn serve_static(req: &Request<Body>, root_dir: &PathBuf) -> impl Future<Item=Res
         }
 
         if let Some(path) = local_path_with_maybe_index(&uri, &root_dir) {
-            return Either::B(
-                // open file and make response with file
-                File::open(path.clone())
-                    .map_err(Error::from)
-                    .and_then(move |file| respond_with_file(file, path)),
-            )
+            if path.is_dir() {
+                // return Either::A(future::ok())
+                let paths = fs::read_dir(path).unwrap();
+                for path in paths {
+                    println!("{:#?}", path.unwrap().path().display());
+                }
+                return Either::A(
+                    // open file and make response with file
+                    respond_with_dir(path)
+                )
+            } else {
+                return Either::B(
+                    // open file and make response with file
+                    File::open(path.clone())
+                        .map_err(Error::from)
+                        .and_then(move |file| respond_with_file(file, path)),
+                )
+            }
         } else {
             return Either::A(future::err(Error::UrlToPath))
         }
@@ -207,11 +219,6 @@ fn serve_static(req: &Request<Body>, root_dir: &PathBuf) -> impl Future<Item=Res
 // try to get the path index file
 fn local_path_with_maybe_index(uri: &Uri, root_dir: &Path) -> Option<PathBuf> {
     local_path_for_request(uri, root_dir).map(|mut p: PathBuf| {
-        if p.is_dir() {
-            p.push("index.html");
-        } else {
-            // println!("trying path as from URL");
-        }
         p
     })
 }
@@ -323,6 +330,13 @@ fn respond_with_file(file: tokio::fs::File, path: PathBuf) -> impl Future<Item=R
     })
 }
 
+// build response
+fn respond_with_dir(path: PathBuf) -> impl Future<Item=Response<Body>, Error=Error> {
+    Response::builder()
+        .status(StatusCode::OK)
+        .header("cow", "0.0.1")
+}
+
 fn make_error_response(e: Error) -> impl Future<Item=Response<Body>, Error = Error> {
     match e {
         Error::Io(e) => Either::A(make_io_error_response(e)),
@@ -334,7 +348,6 @@ fn make_error_response(e: Error) -> impl Future<Item=Response<Body>, Error = Err
 fn make_io_error_response(error: io::Error) -> impl Future<Item=Response<Body>, Error = Error> {
     match error.kind() {
         io::ErrorKind::NotFound => {
-            debug!("{}", error);
             Either::A(make_error_response_from_code(StatusCode::NOT_FOUND))
         }
         _ => Either::B(make_internal_server_error_response(Error::Io(error))),
